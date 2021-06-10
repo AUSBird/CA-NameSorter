@@ -14,6 +14,8 @@ namespace NameSorter.App
 
         public NameEntry()
         {
+            LastName = String.Empty;
+            FirstNames = new List<string>();
         }
 
         public NameEntry(string lastName, IList<string> firstNames)
