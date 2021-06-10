@@ -7,7 +7,7 @@ namespace NameSorter.App
     {
         static void Main(string[] args)
         {
-            var nameListFile = new NameListFile<NameEntry>();
+            var nameListFile = new NameListFileManager<NameEntry>();
             var nameList = nameListFile.Load(args[0]);
 
             var nameSorter = new NameSorter();

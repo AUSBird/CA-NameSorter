@@ -1,12 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using NameSorter.App.Interfaces;
 
 namespace NameSorter.App
 {
-    public class NameListFile<TEntry> : INameListFile
+    public class NameListFileManager<TEntry> : INameListFile
         where TEntry : class, INameEntry, new()
     {
         public IList<INameEntry> Load(string filePath)
@@ -27,7 +29,13 @@ namespace NameSorter.App
 
         public void Save(string filePath, IList<INameEntry> nameList)
         {
-            
+            var path = Path.GetFullPath(filePath);
+            using (var streamWriter = new StreamWriter(path, false))
+            {
+                foreach (var name in nameList)
+                    streamWriter.WriteLine(name.ToString());
+                streamWriter.Flush();
+            }
         }
     }
 }
