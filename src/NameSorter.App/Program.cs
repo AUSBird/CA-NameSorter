@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace NameSorter.App
 {
@@ -6,7 +7,17 @@ namespace NameSorter.App
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var nameListFile = new NameListFile<NameEntry>();
+            var nameList = nameListFile.Load(args[0]);
+
+            var nameSorter = new NameSorter();
+            nameSorter.Sort(nameList);
+            
+            foreach (var name in nameList)
+            {
+                Console.WriteLine(name.ToString());
+            }
+            nameListFile.Save("sorted-names-list.txt", nameList);
         }
     }
 }
