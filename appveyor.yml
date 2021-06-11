@@ -25,3 +25,10 @@ build:
 before_build:
   - cd src/
   - nuget restore
+deploy:
+- provider: GitHub
+  auth_token:
+    secure: uMCpBhD4x2qomdqzfflWtqe9NdRtS3EOw6CSEEgi7jcPUaDxrBDNGDDVP4myp0ec
+  force_update: true
+  on:
+    branch: main
