@@ -50,7 +50,7 @@ namespace NameSorter.Tests
         }
 
         [TestMethod]
-        public void ToString()
+        public void TestToString()
         {
             var nameEntry = new NameEntry("Leach", new List<string>() {"Tasman", "Miles"});
             Assert.AreEqual("Tasman Miles Leach", nameEntry.ToString());
