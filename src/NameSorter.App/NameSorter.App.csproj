@@ -5,4 +5,11 @@
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
+    <Target Name="CopyCustomContent" AfterTargets="AfterBuild">
+        <Copy SourceFiles="unsorted-names-list.txt" DestinationFolder="$(OutDir)" />
+    </Target>
+    <Target Name="CopyCustomContentOnPublish" AfterTargets="Publish">
+        <Copy SourceFiles="unsorted-names-list.txt" DestinationFolder="$(PublishDir)" />
+    </Target>
+
 </Project>
