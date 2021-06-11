@@ -22,3 +22,6 @@ build:
   publish_core_console: true
   parallel: true
   verbosity: minimal
+before_build:
+  - cd src/
+  - nuget restore
