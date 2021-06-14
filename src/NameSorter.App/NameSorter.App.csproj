@@ -5,6 +5,10 @@
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="CommandLineParser" Version="2.8.0" />
+    </ItemGroup>
+
     <Target Name="CopyCustomContent" AfterTargets="AfterBuild">
         <Copy SourceFiles="unsorted-names-list.txt" DestinationFolder="$(OutDir)" />
     </Target>

@@ -9,8 +9,8 @@ namespace NameSorter.App
 {
     public class NameSorter : INameSorter
     {
-        public void Sort<TName>(IList<TName> nameList)
-        where TName : class, INameEntry 
+        public void Sort<TName>(IList<TName> nameList, ICompare compare)
+        where TName : class, INameEntry
         {
             for (var i = 0; i <= nameList.Count - 1; i++)
             {
@@ -19,7 +19,7 @@ namespace NameSorter.App
                 for (var seek = i + 1; seek <= nameList.Count - 1; seek++)
                 {
                     var compareName = nameList[seek].ToString().InvertByDelimiter();
-                    if (String.Compare(currentName, compareName, StringComparison.Ordinal) > 0)
+                    if (compare.CheckSwap(current, nameList[seek]))
                     {
                         current = nameList[seek];
                         currentName = compareName;

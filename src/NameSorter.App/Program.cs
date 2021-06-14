@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CommandLine;
 
 namespace NameSorter.App
 {
@@ -7,12 +8,26 @@ namespace NameSorter.App
     {
         static void Main(string[] args)
         {
-            var nameListFile = new NameListFileManager<NameEntry>();
-            var nameList = nameListFile.Load(args[0]);
+            Parser.Default.ParseArguments<Options>(args)
+                .WithParsed<Options>(Run);
+        }
 
-            var nameSorter = new NameSorter();
-            nameSorter.Sort(nameList);
-            
+        private static void Run(Options options)
+        {
+            var nameListFile = new NameListFileManager<NameEntry>();
+            var nameList = nameListFile.Load(options.InFile);
+
+            if (!options.Invert)
+            {
+                var nameSorter = new NameSorter();
+                nameSorter.Sort(nameList);
+            }
+            else
+            {
+                var nameSorter = new InvertedNameSorter();
+                nameSorter.Sort(nameList);
+            }
+
             foreach (var name in nameList)
             {
                 Console.WriteLine(name.ToString());
