@@ -20,12 +20,12 @@ namespace NameSorter.App
             if (!options.Invert)
             {
                 var nameSorter = new NameSorter();
-                nameSorter.Sort(nameList);
+                nameSorter.Sort(nameList, new NameCompare());
             }
             else
             {
-                var nameSorter = new InvertedNameSorter();
-                nameSorter.Sort(nameList);
+                var nameSorter = new NameSorter();
+                nameSorter.Sort(nameList, new InvertedNameCompare());
             }
 
             foreach (var name in nameList)
